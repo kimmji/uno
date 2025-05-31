@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# UNO Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+멀티플레이 UNO 카드 게임 프로젝트입니다. React, TypeScript, Tailwind CSS를 사용하여 구현했습니다.
 
-## Available Scripts
+## 기능
 
-In the project directory, you can run:
+- 실시간 멀티플레이어 게임
+- UNO 게임 규칙 구현 (카드 뽑기, 카드 내기, UNO 외치기 등)
+- 특수 카드 (와일드, 스킵, 리버스, 드로우 투/포 등) 지원
+- 방향 전환
+- 실시간 게임 상태 동기화
 
-### `npm start`
+## 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React (프론트엔드 라이브러리)
+- TypeScript (타입 시스템)
+- Tailwind CSS (스타일링)
+- Socket.io (실시간 통신)
+- Express (서버)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 설치 및 실행
 
-### `npm test`
+1. 프로젝트 클론
+```
+git clone <repository-url>
+cd uno
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 의존성 패키지 설치
+```
+npm install
+```
 
-### `npm run build`
+3. 추가 의존성 설치 (서버)
+```
+npm install concurrently cors express socket.io
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. 개발 모드로 실행 (클라이언트와 서버 동시 실행)
+```
+npm run dev
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. 브라우저에서 접속
+```
+http://localhost:3000
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 게임 방법
 
-### `npm run eject`
+1. 이름을 입력하여 게임에 참여합니다.
+2. 최소 2명 이상이 참여하면 게임을 시작할 수 있습니다.
+3. 자신의 차례가 되면 색상이나 숫자가 일치하는 카드를 냅니다.
+4. 적절한 카드가 없으면 덱에서 카드를 뽑습니다.
+5. 카드를 모두 내면 게임에서 승리합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 특수 카드
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **스킵 (Skip)**: 다음 플레이어의 차례를 건너뜁니다.
+- **리버스 (Reverse)**: 게임 진행 방향을 반대로 바꿉니다.
+- **드로우 투 (+2)**: 다음 플레이어가 카드 2장을 뽑아야 합니다.
+- **와일드 (Wild)**: 원하는 색상을 선택할 수 있습니다.
+- **와일드 드로우 포 (Wild +4)**: 원하는 색상을 선택하고 다음 플레이어가 카드 4장을 뽑아야 합니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 추가로 구현할 사항
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 카드 애니메이션
+- 게임 로그 및 채팅 기능
+- 게임 설정 변경 (시작 카드 수, 특수 카드 사용 여부 등)
+- 게임 방 시스템 (여러 게임 방 지원)
+- 사용자 인증 및 프로필
 
-## Learn More
+## 라이선스
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT License

@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { GameProvider, useGame } from './context/GameContext';
+import Lobby from './components/Lobby';
+import GameBoard from './components/GameBoard';
+import { connectToServer, disconnectFromServer } from './services/socket';
 import './App.css';
+
+const GameContainer: React.FC = () => {
+  const { state } = useGame();
+  const { gameStatus } = state;
+  
+  useEffect(() => {
+    // Connect to the socket server when component mounts
+    connectToServer();
+    
+    // Disconnect from the socket server when component unmounts
+    return () => {
+      disconnectFromServer();
+    };
+  }, []);
+  
+  return (
+    <div className="App">
+      {gameStatus === 'waiting' ? <Lobby /> : <GameBoard />}
+    </div>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GameProvider>
+      <GameContainer />
+    </GameProvider>
   );
 }
 
