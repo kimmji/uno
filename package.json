@@ -61,5 +61,5 @@
     "socket.io": "^4.8.1",
     "tailwindcss": "^3.3.5"
   },
-  "homepage": "https://kimmji.github.io/uno"
+  "homepage": "https://kimmji.github.io/uno/"
 }
