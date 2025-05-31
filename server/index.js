@@ -263,6 +263,31 @@ io.on('connection', (socket) => {
     io.emit('player_said_uno', { playerId });
   });
   
+  // Reset game event
+  socket.on('reset_game', () => {
+    console.log('Game reset requested');
+    
+    // Reset game state to initial values
+    gameState = {
+      players: gameState.players.map(player => ({
+        ...player,
+        cards: [],
+        isCurrentPlayer: false
+      })),
+      currentPlayerId: '',
+      topCard: null,
+      direction: 'clockwise',
+      deck: [],
+      gameStatus: 'waiting',
+      winner: null
+    };
+    
+    console.log('Game has been reset');
+    
+    // Broadcast the reset state to all clients
+    broadcastGameState();
+  });
+  
   // Disconnect event
   socket.on('disconnect', () => {
     console.log('User disconnected:', socket.id);

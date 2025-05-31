@@ -5,7 +5,7 @@ import Card from './Card';
 import PlayerHand from './PlayerHand';
 
 const GameBoard: React.FC = () => {
-  const { state, playCard, drawCard, sayUno } = useGame();
+  const { state, playCard, drawCard, sayUno, resetGame } = useGame();
   const { players, currentPlayerId, topCard, gameStatus, winner, direction } = state;
   
   const currentPlayer = players.find(p => p.id === currentPlayerId);
@@ -20,12 +20,6 @@ const GameBoard: React.FC = () => {
   
   // Get your player from the players array using the stored player ID
   const yourPlayer = players.find(p => p.id === currentClientPlayerId);
-  
-  // Debug: Log current player IDs
-  console.log('Debug - currentClientPlayerId:', currentClientPlayerId);
-  console.log('Debug - currentPlayerId:', currentPlayerId);
-  console.log('Debug - yourPlayer:', yourPlayer);
-  console.log('Debug - isCurrentPlayer:', currentClientPlayerId === currentPlayerId);
   
   // Get other players
   const otherPlayers = players.filter(p => p.id !== currentClientPlayerId);
@@ -64,7 +58,7 @@ const GameBoard: React.FC = () => {
           </p>
           <button 
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            onClick={() => window.location.reload()}
+            onClick={() => resetGame()}
           >
             Play Again
           </button>

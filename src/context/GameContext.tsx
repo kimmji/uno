@@ -277,6 +277,7 @@ interface GameContextProps {
   playCard: (cardId: string, chosenColor?: string) => void;
   drawCard: () => void;
   sayUno: () => void;
+  resetGame: () => void;
 }
 
 const GameContext = createContext<GameContextProps | undefined>(undefined);
@@ -364,6 +365,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     });
   };
   
+  const resetGame = () => {
+    console.log('Resetting game...');
+    socket.emit('reset_game');
+  };
+  
   return (
     <GameContext.Provider
       value={{
@@ -373,7 +379,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         startGame,
         playCard,
         drawCard,
-        sayUno
+        sayUno,
+        resetGame
       }}
     >
       {children}
